@@ -1,8 +1,13 @@
 import express from 'express'
 import logger from 'morgan'
 import createError from 'http-errors'
+import "reflect-metadata"
+import { createExpressServer } from "routing-controllers"
+import * as Controllers from './Controller'  
 
-const app = express()
+const app = createExpressServer({
+    controllers: [ Controllers ]
+})
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -19,6 +24,7 @@ app.listen(3000, () => {
 app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
     next(createError(404))
 })
+
 // error handler
 app.use(function (err: ResponseError, req: express.Request, res: express.Response, next: express.NextFunction) {
     // set locals, only providing error in development
