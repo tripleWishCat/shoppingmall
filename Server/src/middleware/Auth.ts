@@ -1,11 +1,20 @@
 import bkfd2Password from 'pbkdf2-password'
-import path from 'path'
 
 const hasher = bkfd2Password()
 
-export const createPassword = (password:string) => {
-    hasher({ password }, function(err:Error, salt:string, hash:string) {
-      if (err) throw err;
-      return { hash: hash, salt: salt }
-    })
-}
+export function createPassword(password:string):Promise<any> {
+    return new Promise((resolve, reject) => 
+      hasher({ password }, function(err:Error, salt:string, hash:string) {
+        if (err) reject(err)
+        resolve ({salt, hash})
+      })
+)}
+
+// export function createPassword(password:string):Promise<Object|Error> {
+//   return hasher({ password }, function(err:Error, salt:string, hash:string) {
+//       if (err) return err
+//       else return {salt, hash}
+//     })
+// }
+
+

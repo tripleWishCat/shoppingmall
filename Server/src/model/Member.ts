@@ -1,4 +1,4 @@
-import { Sequelize, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 import sequelize from './db'
 
 // sequelize가 자체적으로 createdAt과 updatedAt을 제공함
@@ -7,9 +7,7 @@ const Member = sequelize.define('Member', {
   id: {
     type: DataTypes.STRING(20),
     allowNull: false,
-    // unique: true,
-    primaryKey: true,
-    autoIncrement: true,
+    primaryKey: true
   },
   pwd: {
     type: DataTypes.STRING(2000)
@@ -53,16 +51,16 @@ const Member = sequelize.define('Member', {
     type: DataTypes.STRING(1),
     defaultValue: 'N'
   },
-  // reg_date: {
-  //   type: DataTypes.DATE
-  // },
+  reg_date: {
+    type: DataTypes.DATE
+  },
   regId: {
     type: DataTypes.STRING(20),
     defaultValue: 'admin1'
   },
-  // chg_date: {
-  //   type: DataTypes.DATE
-  // },
+  chg_date: {
+    type: DataTypes.DATE
+  },
   chgId: {
     type: DataTypes.STRING(20),
     defaultValue: 'admin1'
@@ -79,5 +77,7 @@ const Member = sequelize.define('Member', {
     defaultValue: '0'
   }
 })
+
+sequelize.sync({ alter: true })
 
 export default Member

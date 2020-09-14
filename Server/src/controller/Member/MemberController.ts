@@ -1,20 +1,23 @@
-import { Controller, Param, Body, Get, Post, Put } from "routing-controllers";
+import { JsonController, Param, Body, Get, Post, Put, Res } from "routing-controllers";
 import { MemberService } from '../../service'
 import { response } from "express";
 import { makeResult } from '../../middleware'
+import { MemberType } from '../../entity'
 
 
-@Controller()
+@JsonController()
 export class MemberController {
-    constructor(private MemberService:MemberService) {
+    constructor() {
         console.log('Member Controller Constructed')
     }
     // 회원가입 요청
-    @Post("/member/")
-    async createMember(@Body() member: {}) {
+    @Post("/member")
+    async createMember(@Body() member: MemberType) {
         let res
         try {
-            const result = await this.MemberService.createMember(member)
+            console.log('I got this member', member)
+            const memberService = new MemberService
+            const result = await memberService.createMember(member)
             res = makeResult(200, result)
         } catch (err) {
             res = makeResult(400, err)
