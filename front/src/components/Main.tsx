@@ -6,7 +6,6 @@ const Main: React.FC = () => (
     <MainCarousel></MainCarousel>
     <MainContainer>
       <ContentContainer>
-        버블스크린이 갓이다 킹정? 응 킹정 버블스크린이 갓이다갓이다갓이다갓이다
         <ImageCard />
         <ImageCard />
         <ImageCard />
