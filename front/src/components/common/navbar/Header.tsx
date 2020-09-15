@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
-// 버블스크린이 갓이다 킹정? 응 킹정 버블스크린이 갓이다 킹정? 응 킹정
 function Header() {
   return (
     <HeaderWrapper>
@@ -12,8 +10,6 @@ function Header() {
         </HeaderUtilInner>
       </HeaderUtil>
       <HeaderMenu>
-
-
       </HeaderMenu>
     </HeaderWrapper>
   );
