@@ -15,13 +15,20 @@ export class MemberService {
     const transaction = await sequelize.transaction()
 
     try {
-      console.log('I got this member', member)
       const newMember = await this.memberRepo.createMember(transaction, member)
-      console.log('suceesfully created')
       await transaction.commit()
       return newMember
     } catch (err) {
       await transaction.rollback()
+      return err
+    }
+  }
+
+  async deleteMember (id: string) {
+    try {
+      await this.memberRepo.deleteMember(id)
+      return
+    } catch (err) {
       return err
     }
   }

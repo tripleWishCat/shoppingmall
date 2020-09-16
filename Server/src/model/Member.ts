@@ -52,14 +52,16 @@ const Member = sequelize.define('Member', {
     defaultValue: 'N'
   },
   reg_date: {
-    type: DataTypes.DATE
+    type: DataTypes.DATE,
+    defaultValue: Date.now().toString()
   },
   regId: {
     type: DataTypes.STRING(20),
     defaultValue: 'admin1'
   },
   chg_date: {
-    type: DataTypes.DATE
+    type: DataTypes.DATE,
+    defaultValue: Date.now().toString()
   },
   chgId: {
     type: DataTypes.STRING(20),
