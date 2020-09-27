@@ -1,6 +1,7 @@
 import logger from 'morgan'
 import "reflect-metadata"
 import { createExpressServer } from "routing-controllers"
+import express from 'express'
 
 const app = createExpressServer({
     defaults: {
@@ -8,10 +9,12 @@ const app = createExpressServer({
         undefinedResultCode: 204
     },
     routePrefix: "/api",
-    controllers: [ __dirname + "/controllers/*/*.js" ],
+    controllers: [ __dirname + "/controller/**/*.js" ],
     classTransformer: true
 })
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 app.use(logger('dev'))
 
 
