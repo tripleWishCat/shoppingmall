@@ -1,8 +1,7 @@
 import React, { ReactElement } from "react";
-// import Button from "semantic-ui"
 interface Props {
   placeholder?: string;
-  // disabled : boolean
+  disabled : boolean
   action: () => void;
   width?: number;
   height?: number;

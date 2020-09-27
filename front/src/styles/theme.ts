@@ -6,6 +6,7 @@ import baseStyled, {
 
 const sizes: { [key: string]: number } = {
   desktop: 768,
+  mobile: 320,
 };
 
 type BackQuoteArgs = string[];
@@ -28,6 +29,9 @@ Object.keys(sizes).reduce((acc: Media, label: string) => {
           }
         `;
       break;
+    // mobile 추가
+    // case "mobile":
+
     default:
       break;
   }
@@ -42,12 +46,12 @@ const colors = {
 const secondaryColors = {};
 const fontSizes: string[] = [];
 const theme = {
-	colors,
-	fontSizes,
-	secondaryColors,
-	media,
+  colors,
+  fontSizes,
+  secondaryColors,
+  media,
 };
 
 export type Theme = typeof theme;
 export const styled = baseStyled as ThemedStyledInterface<Theme>;
-export default theme; 
+export default theme;
