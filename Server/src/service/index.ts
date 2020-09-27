@@ -1,3 +1,5 @@
 import { MemberService } from './MemberService'
+import { DeliLocationService } from './DeliLocationService'
 
-export { MemberService }
+
+export { MemberService, DeliLocationService }

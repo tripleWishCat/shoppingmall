@@ -1,7 +1,6 @@
 import sequelize from "../model/db";
 import { MemberRepository } from '../repository'
 import { MemberType } from '../entity'
-import { Transaction } from "sequelize/types";
 
 
 export class MemberService {

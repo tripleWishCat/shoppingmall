@@ -2,21 +2,21 @@ import Member from "../model/Member";
 import { Transaction } from "sequelize/types";
 import { compareHash, createPassword } from '../middleware/Auth'
 import { MemberType } from '../entity'
-import assert from 'assert'
 
 export class MemberRepository {
   constructor() {}
   async createMember (transaction:Transaction, member:MemberType) {
     try {
       const saltedPassword = await createPassword(member.pwd)
-      const newMember = { ...member, pwd:saltedPassword.hash, salt:saltedPassword.salt}
+      const newMember = { ...member, pwd:saltedPassword.hash, salt:saltedPassword.salt, reg_date:new Date(), chg_date: new Date()}
       return Member.create(newMember, {transaction: transaction})
     } catch (err) {
       console.log("Error during createMember in Repository", err)
       throw err
     }
   } 
-
+  
+  // TODO : SALT 삭제하기
   async login (transaction: Transaction, member:MemberType) {
     try {
       const visitorInstance = await Member.findOne({where : {user_id: member.user_id}, transaction: transaction})
@@ -43,7 +43,7 @@ export class MemberRepository {
 
   updateMember (transaction:Transaction, id: string, member:MemberType) {
     try {
-      return Member.update({ ...member }, { where: { user_id: id }, transaction: transaction })
+      return Member.update({ ...member, chg_date:new Date() }, { where: { user_id: id }, transaction: transaction })
     } catch (err) {
       console.log("Error during updateMember in Repository")
       throw err
