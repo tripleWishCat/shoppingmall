@@ -1,6 +1,7 @@
 import sequelize from "../model/db";
 import { MemberRepository } from '../repository'
 import { MemberType } from '../entity'
+import { Transaction } from "sequelize/types";
 
 
 export class MemberService {
@@ -13,23 +14,57 @@ export class MemberService {
   
   async createMember (member: MemberType) {
     const transaction = await sequelize.transaction()
-
     try {
-      const newMember = await this.memberRepo.createMember(transaction, member)
+      await this.memberRepo.createMember(transaction, member)
       await transaction.commit()
-      return newMember
     } catch (err) {
       await transaction.rollback()
-      return err
+      throw err
+    }
+  }
+
+  async login (member: MemberType) {
+    const transaction = await sequelize.transaction()
+    try {
+      await this.memberRepo.validateMember(transaction, member.user_id)
+      await this.memberRepo.login(transaction, member)
+      await transaction.commit()
+    } catch (err) {
+      await transaction.rollback()
+      throw err
     }
   }
 
   async deleteMember (id: string) {
+    const transaction = await sequelize.transaction()
     try {
-      await this.memberRepo.deleteMember(id)
-      return
+      await this.memberRepo.validateMember(transaction, id)
+      await this.memberRepo.deleteMember(transaction, id)
+      await transaction.commit()
     } catch (err) {
-      return err
+      throw err
+    }
+  }
+
+  // TODO : read 전에 삭제된 유저인지 확인하는 로직 추가?
+  async readMember (id:string) {
+    const transaction = await sequelize.transaction()
+    try {
+      const member = await this.memberRepo.readMember(transaction, id)
+      await transaction.commit()
+      return member
+    } catch (err) {
+      throw err
+    }
+  }
+
+  async updateMember (id:string, member:MemberType) {
+    const transaction = await sequelize.transaction()
+    try {
+      await this.memberRepo.updateMember(transaction, id, member)
+      await transaction.commit()
+    } catch (err) {
+      throw err
     }
   }
 }

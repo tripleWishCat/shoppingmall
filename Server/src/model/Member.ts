@@ -4,7 +4,7 @@ import sequelize from './db'
 // sequelize가 자체적으로 createdAt과 updatedAt을 제공함
 
 const Member = sequelize.define('Member', {
-  id: {
+  user_id: {
     type: DataTypes.STRING(20),
     allowNull: false,
     primaryKey: true
@@ -13,61 +13,61 @@ const Member = sequelize.define('Member', {
     type: DataTypes.STRING(2000)
   },
   salt: {
-    type: DataTypes.STRING(64)
-  },
-  name: {
-    type: DataTypes.STRING(200)
-  },
-  postNum: {
-    type: DataTypes.STRING(200)
-  },
-  addrB: {
     type: DataTypes.STRING(1000)
   },
-  addrD: {
+  user_name: {
+    type: DataTypes.STRING(200)
+  },
+  post_num: {
+    type: DataTypes.STRING(200)
+  },
+  address_b: {
     type: DataTypes.STRING(1000)
   },
-  phoneNum: {
+  address_d: {
+    type: DataTypes.STRING(1000)
+  },
+  phone_num: {
     type: DataTypes.STRING(11)
   },
-  hPhoneNum: {
+  h_phone_num: {
     type: DataTypes.STRING(11)
   },
   email: {
     type: DataTypes.STRING(200)
   },
-  birthYmd: {
+  birth_ymd: {
     type: DataTypes.STRING(10)
   },
   group: {
     type: DataTypes.STRING(10),
     defaultValue: 'user' // 어떤 값을 줘야하나
   },
-  humanYn: {
+  human_yn: {
     type: DataTypes.STRING(1),
     defaultValue: 'N'
   },
-  deleteYn: {
+  delete_yn: {
     type: DataTypes.STRING(1),
     defaultValue: 'N'
   },
   reg_date: {
     type: DataTypes.DATE,
-    defaultValue: Date.now().toString()
+    defaultValue: new Date()
   },
-  regId: {
+  reg_id: {
     type: DataTypes.STRING(20),
     defaultValue: 'admin1'
   },
   chg_date: {
     type: DataTypes.DATE,
-    defaultValue: Date.now().toString()
+    defaultValue: new Date()
   },
-  chgId: {
+  chg_id: {
     type: DataTypes.STRING(20),
     defaultValue: 'admin1'
   },
-  recId: {
+  rec_id: {
     type: DataTypes.STRING(20)
   },
   grade: {

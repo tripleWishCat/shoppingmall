@@ -1,7 +1,8 @@
 import { JsonController, Param, Body, Get, Post, Put, Res, Delete } from "routing-controllers";
 import { MemberService } from '../../service'
-import { makeResult } from '../../middleware'
 import { MemberType } from '../../entity'
+import { Response } from "express";
+import { MemberRepository } from "../../repository";
 
 // Member CRUD 로직
 @JsonController()
@@ -10,40 +11,58 @@ export class MemberController {
     constructor() { this.memberService = new MemberService() }
 
     // 회원가입 요청
-    @Post("/member")
-    async createMember(@Body() member: MemberType, @Res() response:any) {
-        let res
+    // TODO : 이미존재하는 유저 체크하는 로직 추가?
+    @Post("/member/new")
+    async createMember(@Body() member: MemberType, @Res() response:Response) {
         try {
-            const result = await this.memberService.createMember(member)
-            res = makeResult(200, result)
+            await this.memberService.createMember(member)
+            return response.status(200).send()
         } catch (err) {
-            res = makeResult(400, err)
+            return response.status(400).send(err)
         }
-        return response.status(res.status)
+    }
+
+    // 로그인 요청
+    @Post("/member")
+    async login(@Body() member: MemberType, @Res() response:Response) {
+        try {
+            await this.memberService.login(member)
+            return response.status(200).send()
+        } catch (err) {
+            return response.status(400).send(err)
+        }
     }
 
     // 회원정보 요청
     @Get("/member/:id")
-    readMember(@Param("id") id: string, @Body() member: {}) {
-        return "회원정보 요청 로직"
+    async readMember(@Param("id") id: string, @Res() response:any) {
+        try {
+            const result = await this.memberService.readMember(id)
+            return response.status(200).json(result)
+        } catch (err) {
+            return response.status(400).json(err)
+        }
     }
 
     // 회원정보수정 요청
     @Put("/member/:id")
-    updateMember(@Param("id") id: string, @Body() members: {}) {
-        return "회원 정보 수정 로직"
+    async updateMember(@Param("id") id: string, @Body() member: MemberType, @Res() response:any) {
+        try {
+            await this.memberService.updateMember(id, member)
+            return response.status(200).send()
+        } catch (err) {
+            return response.status(400).send(err)
+        }
     }
 
     // 회원정보삭제 요청
     @Delete("/member/:id")
-    async deleteMember(@Param("id") id: string, @Res() response:any) {
-        let res
+    async deleteMember(@Param("id") id: string, @Res() response:Response) {
         try {
-            const result = await this.memberService.deleteMember(id)
-            res = makeResult(200, result)
+            await this.memberService.deleteMember(id)
+            return response.status(200).send()
         } catch (err) {
-            res = makeResult(400, err)
+            return response.status(400).send(err)
         }
-        return response.status(res.status)
     }
 }
