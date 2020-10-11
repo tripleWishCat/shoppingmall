@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import SmallImage from "components/common/cards/SmallImage";
-import PropTypes from "prop-types";
 
 export default class FourContainer extends Component {
-  static propTypes = {};
 
   render() {
     return (

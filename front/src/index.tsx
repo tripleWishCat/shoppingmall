@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import GlobalStyles from "styles/GlobalStyles";
-import styled from "styled-components"
 import theme from "styles/theme";
 import { ThemeProvider } from "styles/theme-components";
 import Root from "routes/Root";
