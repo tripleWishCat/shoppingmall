@@ -18,6 +18,10 @@ const sequelize = new Sequelize (
         },
         sync: { alter: true },
         logging: console.log,
+        define: {
+            freezeTableName: true,
+            timestamps: false,
+        }
     }
 )
 

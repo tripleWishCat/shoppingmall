@@ -52,8 +52,7 @@ const Member = sequelize.define('Member', {
     defaultValue: 'N'
   },
   reg_date: {
-    type: DataTypes.DATE,
-    defaultValue: new Date()
+    type: DataTypes.DATE
   },
   reg_id: {
     type: DataTypes.STRING(20),
@@ -61,7 +60,7 @@ const Member = sequelize.define('Member', {
   },
   chg_date: {
     type: DataTypes.DATE,
-    defaultValue: new Date()
+    defaultValue: DataTypes.NOW
   },
   chg_id: {
     type: DataTypes.STRING(20),

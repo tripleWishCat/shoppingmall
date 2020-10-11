@@ -2,7 +2,6 @@ import { JsonController, Param, Body, Get, Post, Put, Res, Delete } from "routin
 import { MemberService } from '../../service'
 import { MemberType } from '../../entity'
 import { Response } from "express";
-import { MemberRepository } from "../../repository";
 
 // Member CRUD 로직
 @JsonController()
