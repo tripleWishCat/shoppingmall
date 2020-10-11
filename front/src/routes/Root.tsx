@@ -1,15 +1,15 @@
 import * as React from "react";
 import styled from "styled-components";
 import Main from "components/Main";
-import Notice from "components/board/Notice";
-import Question from "components/board/Question";
-import Join from "components/member/Join";
-import Login from "components/member/Login";
-import Myshop from "components/myshop/Myshop";
-import Basket from "components/order/Basket";
-import Orders from "components/order/Orders";
-import ProductInfo from "components/product/ProductInfo";
-import ShopInfo from "components/shopinfo/ShopInfo";
+import Notice from "components/containers/board/Notice";
+import Question from "components/containers/board/Question";
+import Join from "components/containers/member/Join";
+import Login from "components/containers/member/Login";
+import Myshop from "components/containers/myshop/Myshop";
+import Basket from "components/containers/order/Basket";
+import Orders from "components/containers/order/Orders";
+import ProductInfo from "components/containers/product/ProductInfo";
+import ShopInfo from "components/containers/shopinfo/ShopInfo";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 const Root: React.FC = () => (

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import DefaultButton from "components/common/buttons/DefaultButton"
 import LinkButton from "components/common/buttons/LinkButton";
 
 export default class Header extends Component {
@@ -31,6 +32,7 @@ export default class Header extends Component {
           </HeaderLeft>
           <Logo src={require("assets/images/logo.gif")} />
           <HeaderRight>
+            <DefaultButton message="검색" />
             <LinkButton name="검색" linkto="/product" />
             <LinkButton name="장바구니" linkto="/order/basket" />
           </HeaderRight>

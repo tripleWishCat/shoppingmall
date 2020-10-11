@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 export default class Footer extends Component {
-  static propTypes = {
-    prop: PropTypes,
-  };
-
   render() {
     return (
       <FooterWrapper>

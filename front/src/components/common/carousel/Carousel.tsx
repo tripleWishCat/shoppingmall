@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-// interface CarouselProps {
-//   page: number;
-// }
+interface CarouselProps {
+  page: number;
+}
 
-// interface CarouselState {
-//   ellipsis: boolean;
-// }
+interface CarouselState {
+  ellipsis: boolean;
+}
 // <CarouselState, CarouselProps>
 
 
