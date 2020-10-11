@@ -15,4 +15,5 @@ export default LinkButton;
 
 const LinkText = styled.a`
   display: inline-block;
+  padding:0 0.8em 0 0.8em;
 `;

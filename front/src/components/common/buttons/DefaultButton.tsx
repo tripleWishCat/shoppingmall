@@ -1,11 +1,21 @@
 import React from "react";
+import styled from "styled-components";
+import { Button } from "@material-ui/core";
 
-interface IButtonProps {
-  text: string;
+interface Props {
+  message: string;
+  disabled?: boolean;
   action?: () => void;
-  
+  width?: number;
+  height?: number;
 }
 
-export const ExtendedButton: React.FC<IButtonProps> = ({ text, action }) => {
-  return <button></button>;
-};
+export default function DefaultButton({
+  message,
+  disabled,
+  action,
+  width,
+  height,
+}: Props) {
+  return <Button color="primary">{message}</Button>;
+}
