@@ -1,4 +1,11 @@
-type DefaultButtonProps = { message: string };
+import React from "react";
 
-const DefaultButton = ({message}:DefaultButtonProps) => <div>{message}</div>
+interface IButtonProps {
+  text: string;
+  action?: () => void;
+  
+}
 
+export const ExtendedButton: React.FC<IButtonProps> = ({ text, action }) => {
+  return <button></button>;
+};

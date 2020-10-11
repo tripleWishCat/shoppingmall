@@ -1,29 +1,39 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
+import LinkButton from "components/common/buttons/LinkButton";
 
 export default class Header extends Component {
-  static propTypes = {
-    prop: PropTypes,
-  };
-
   render() {
     return (
       <HeaderWrapper>
         <HeaderUtil>
           <HeaderUtilInner>
-            <UtilLeft>사이드바 좌측</UtilLeft>
-            <UtilRight>사이드바 우측</UtilRight>
+            <UtilLeft>
+              <LinkButton name="바로가기+" linkto="/" />
+              <LinkButton name="공지사항" linkto="/board/notice" />
+              <LinkButton name="상품 Q&A" linkto="/board/question" />
+            </UtilLeft>
+            <UtilRight>
+              <LinkButton name="로그인" linkto="/member/login" />
+              <LinkButton name="회원가입" linkto="/member/join" />
+              <LinkButton name="주문조회" linkto="/myshop" />
+            </UtilRight>
           </HeaderUtilInner>
         </HeaderUtil>
         <HeaderMenu>
-          <MenuItem>Header Menu</MenuItem>
-          <MenuItem>Header Menu</MenuItem>
-          <MenuItem>Header Menu</MenuItem>
-          <Logo>Logo</Logo>
-          <MenuItem>Header Menu</MenuItem>
-          <MenuItem>Header Menu</MenuItem>
-          <MenuItem>Header Menu</MenuItem>
+          <HeaderLeft>
+            <Hamburger>|||</Hamburger>
+            <LinkButton name="제품전체" linkto="/product" />
+            <LinkButton name="퓨전 떡" linkto="/product" />
+            <LinkButton name="전통 떡" linkto="/product" />
+            <LinkButton name="청년제과" linkto="/product" />
+            <LinkButton name="선물세트" linkto="/product" />
+          </HeaderLeft>
+          <Logo src={require("assets/images/logo.gif")} />
+          <HeaderRight>
+            <LinkButton name="검색" linkto="/product" />
+            <LinkButton name="장바구니" linkto="/order/basket" />
+          </HeaderRight>
         </HeaderMenu>
       </HeaderWrapper>
     );
@@ -61,7 +71,6 @@ const HeaderUtilInner = styled.div`
   /* shape */
   color: grey;
   width: 100%;
-  background-color: darkgrey;
 
   /* position */
   display: flex;
@@ -70,26 +79,43 @@ const HeaderUtilInner = styled.div`
 `;
 
 const UtilLeft = styled.div`
-  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
 `;
+
 const UtilRight = styled.div`
-  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const HeaderMenu = styled.div`
   width: 90%;
   max-width: 1240px;
   min-width: 960px;
-  background-color: grey;
-
+  justify-content: space-between;
   display: flex;
-  justify-content: center;
+
+  /* 임시 */
+  margin: 2.5em 0 2.5em 0;
 `;
 
-const MenuItem = styled.div`
-  padding: 40px;
+const HeaderLeft = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 40%;
 `;
-const Logo = styled.div`
-  padding: 40px;
-  background-color: lightslategrey;
+const HeaderRight = styled.div`
+  justify-content: flex-end;
+  display: flex;
+  width: 40%;
+`;
+
+const Logo = styled.img`
+  justify-content: center;
+  place-items: center;
+  width: 15%;
+`;
+
+const Hamburger = styled.div`
+  /* 햄버거 버튼  */
 `;
