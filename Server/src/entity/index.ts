@@ -1,4 +1,4 @@
-import MemberType from './MemberType'
+import { MemberType, changingSecretBodyType, userInfoType } from './MemberType'
 import DeliLocationType from './DeliLocationType'
 
-export { MemberType, DeliLocationType }
+export { MemberType, changingSecretBodyType, DeliLocationType, userInfoType }

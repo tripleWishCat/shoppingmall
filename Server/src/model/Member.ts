@@ -12,9 +12,6 @@ const Member = sequelize.define('Member', {
   pwd: {
     type: DataTypes.STRING(2000)
   },
-  salt: {
-    type: DataTypes.STRING(1000)
-  },
   user_name: {
     type: DataTypes.STRING(200)
   },

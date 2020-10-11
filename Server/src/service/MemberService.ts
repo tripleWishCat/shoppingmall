@@ -1,6 +1,7 @@
 import sequelize from "../model/db";
 import { MemberRepository } from '../repository'
-import { MemberType } from '../entity'
+import { MemberType, changingSecretBodyType, userInfoType } from '../entity'
+import { createPassword } from '../middleware/Auth'
 
 
 export class MemberService {
@@ -25,8 +26,8 @@ export class MemberService {
   async login (member: MemberType) {
     const transaction = await sequelize.transaction()
     try {
-      await this.memberRepo.validateMember(transaction, member.user_id)
       await this.memberRepo.login(transaction, member)
+      await this.memberRepo.isDeletedMember(transaction, member.user_id)
       await transaction.commit()
     } catch (err) {
       await transaction.rollback()
@@ -37,7 +38,7 @@ export class MemberService {
   async deleteMember (id: string) {
     const transaction = await sequelize.transaction()
     try {
-      await this.memberRepo.validateMember(transaction, id)
+      await this.memberRepo.isDeletedMember(transaction, id)
       await this.memberRepo.deleteMember(transaction, id)
       await transaction.commit()
     } catch (err) {
@@ -45,10 +46,11 @@ export class MemberService {
     }
   }
 
-  // TODO : read 전에 삭제된 유저인지 확인하는 로직 추가?
+
   async readMember (id:string) {
     const transaction = await sequelize.transaction()
     try {
+      await this.memberRepo.isDeletedMember(transaction, id)
       const member = await this.memberRepo.readMember(transaction, id)
       await transaction.commit()
       return member
@@ -60,7 +62,22 @@ export class MemberService {
   async updateMember (id:string, member:MemberType) {
     const transaction = await sequelize.transaction()
     try {
+      await this.memberRepo.isDeletedMember(transaction, id)
       await this.memberRepo.updateMember(transaction, id, member)
+      await transaction.commit()
+    } catch (err) {
+      throw err
+    }
+  }
+
+  async updateMemberSecret (id: string, userInfo:userInfoType, pwds:changingSecretBodyType) {
+    const transaction = await sequelize.transaction()
+    try {
+      const member = {user_id:userInfo.user_id, user_name:userInfo.user_name}
+      await this.memberRepo.isDeletedMember(transaction, id)
+      await this.memberRepo.login(transaction, {...member, pwd:pwds.old_pwd})
+      const saltedPassword = await createPassword(pwds.new_pwd)
+      await this.memberRepo.updateMember(transaction, id, { ...member, pwd:saltedPassword })
       await transaction.commit()
     } catch (err) {
       throw err
