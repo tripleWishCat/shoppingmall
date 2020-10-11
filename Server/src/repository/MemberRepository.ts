@@ -8,7 +8,7 @@ export class MemberRepository {
   async createMember (transaction:Transaction, member:MemberType) {
     try {
       const saltedPassword = await createPassword(member.pwd)
-      const newMember = { ...member, pwd:saltedPassword.hash, salt:saltedPassword.salt, reg_date:new Date(), chg_date: new Date()}
+      const newMember = { ...member, pwd:saltedPassword, reg_date:new Date(), chg_date: new Date()}
       return Member.create(newMember, {transaction: transaction})
     } catch (err) {
       console.log("Error during createMember in Repository", err)
@@ -16,13 +16,12 @@ export class MemberRepository {
     }
   } 
   
-  // TODO : SALT 삭제하기
   async login (transaction: Transaction, member:MemberType) {
     try {
       const visitorInstance = await Member.findOne({where : {user_id: member.user_id}, transaction: transaction})
       const visitor = Object(visitorInstance)
-      const saltedPassword = await createPassword(member.pwd, visitor.salt)
-      const isValid = compareHash(visitor.pwd, saltedPassword.hash)
+      const saltedPassword = await createPassword(member.pwd)
+      const isValid = compareHash(visitor.pwd, saltedPassword)
       if (!isValid) throw Error('User Information is not correct. Check again')
     } catch (err) {
       console.log("Error during login in Repository", err)
@@ -50,16 +49,6 @@ export class MemberRepository {
     }
   }
 
-  async validateMember (transaction:Transaction, id:string) {
-    try {
-      const visitor = await this.readMember(transaction, id)
-      if (visitor.delete_yn === 'Y') throw Error('This user was deleted. Check again your id.')
-    } catch (err) {
-      console.log("Error during validating in Repository")
-      throw err
-    }
-  }
-
 
   deleteMember (transaction:Transaction, id:string) {
     try {
@@ -67,6 +56,17 @@ export class MemberRepository {
     } catch (err) {
       console.log("Error during deleteMember in Repository", err)
       throw err
+    }
+  }
+
+  async isDeletedMember (transaction:Transaction, id:string) {
+    try {
+      const result = await Member.findOne({ where : {user_id: id} , transaction: transaction})
+      const member = Object(result)
+      if (!member) throw Error('Member does not exist.')
+      if (member.delete_yn === 'Y') throw Error('deleted Member')
+    } catch(err) {
+      console.log("Error during checking whether Member is deleted in Repository", err)
     }
   }
 }

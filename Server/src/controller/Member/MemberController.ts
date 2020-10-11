@@ -1,16 +1,17 @@
-import { JsonController, Param, Body, Get, Post, Put, Res, Delete } from "routing-controllers";
+import { JsonController, Param, Body, Get, Post, Put, Res, Delete, UseBefore, Req } from "routing-controllers";
 import { MemberService } from '../../service'
-import { MemberType } from '../../entity'
-import { Response } from "express";
+import { MemberType, changingSecretBodyType  } from '../../entity'
+import { Request, Response } from "express";
+import { createJwt, checkJwt, checkIdentity } from '../../middleware/Auth'
 
 // Member CRUD 로직
+
 @JsonController()
 export class MemberController {
     memberService : MemberService
     constructor() { this.memberService = new MemberService() }
 
     // 회원가입 요청
-    // TODO : 이미존재하는 유저 체크하는 로직 추가?
     @Post("/member/new")
     async createMember(@Body() member: MemberType, @Res() response:Response) {
         try {
@@ -26,13 +27,15 @@ export class MemberController {
     async login(@Body() member: MemberType, @Res() response:Response) {
         try {
             await this.memberService.login(member)
-            return response.status(200).send()
+            const jwt = createJwt(member)
+            return response.status(200).send({ jwt })
         } catch (err) {
             return response.status(400).send(err)
         }
     }
 
     // 회원정보 요청
+    @UseBefore(checkJwt, checkIdentity)
     @Get("/member/:id")
     async readMember(@Param("id") id: string, @Res() response:any) {
         try {
@@ -44,9 +47,11 @@ export class MemberController {
     }
 
     // 회원정보수정 요청
+    @UseBefore(checkJwt, checkIdentity)
     @Put("/member/:id")
     async updateMember(@Param("id") id: string, @Body() member: MemberType, @Res() response:any) {
         try {
+            if (member.pwd) throw Error('Wrong access to change password.')
             await this.memberService.updateMember(id, member)
             return response.status(200).send()
         } catch (err) {
@@ -54,7 +59,20 @@ export class MemberController {
         }
     }
 
+    //비밀번호수정 요청
+    @UseBefore(checkJwt, checkIdentity)
+    @Put("/member/:id/secret")
+    async updateMemberSecret(@Req() request:any, @Param("id") id: string, @Body() pwds: changingSecretBodyType, @Res() response:any) {
+        try {
+            await this.memberService.updateMemberSecret(id, request.headers.userInfo, pwds)
+            return response.status(200).send()
+        } catch (err) {
+            return response.status(400).send(err)
+        }
+    }
+
     // 회원정보삭제 요청
+    @UseBefore(checkJwt, checkIdentity)
     @Delete("/member/:id")
     async deleteMember(@Param("id") id: string, @Res() response:Response) {
         try {

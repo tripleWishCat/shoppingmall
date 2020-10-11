@@ -22,4 +22,14 @@ interface MemberType {
   point?: string 
 }
 
-export default MemberType;
+interface changingSecretBodyType {
+  old_pwd: string,
+  new_pwd: string
+}
+
+interface userInfoType {
+  user_id: string,
+  user_name: string
+}
+
+export { MemberType, changingSecretBodyType, userInfoType};

@@ -1,10 +1,11 @@
-import { JsonController, Param, Body, Get, Post, Put, Res, Delete, Params, Req } from "routing-controllers";
+import { JsonController, Param, Body, Get, Post, Put, Res, Delete, UseBefore } from "routing-controllers";
 import { DeliLocationService } from '../../service'
 import { DeliLocationType } from '../../entity'
 import { Request, Response } from "express";
 import DeliLocation from "../../model/DeliLocation";
+import { checkJwt } from '../../middleware/Auth'
 
-
+@UseBefore(checkJwt)
 @JsonController()
 export class MemberController {
     DeliLocationService : DeliLocationService
