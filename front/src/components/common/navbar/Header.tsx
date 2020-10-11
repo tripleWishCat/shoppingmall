@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import DefaultButton from "components/common/buttons/DefaultButton"
+import DefaultButton from "components/common/buttons/DefaultButton";
 import LinkButton from "components/common/buttons/LinkButton";
 
 export default class Header extends Component {
@@ -30,9 +30,11 @@ export default class Header extends Component {
             <LinkButton name="청년제과" linkto="/product" />
             <LinkButton name="선물세트" linkto="/product" />
           </HeaderLeft>
-          <Logo src={require("assets/images/logo.gif")} />
+          {/* <a href="/"> */}
+            <Logo src={require("assets/images/logo_header.gif")} />
+          {/* </a> */}
           <HeaderRight>
-            <DefaultButton message="검색" />
+            {/* <DefaultButton message="검색" /> */}
             <LinkButton name="검색" linkto="/product" />
             <LinkButton name="장바구니" linkto="/order/basket" />
           </HeaderRight>
@@ -113,7 +115,7 @@ const HeaderRight = styled.div`
 `;
 
 const Logo = styled.img`
-  justify-content: center;
+  display:grid;
   place-items: center;
   width: 15%;
 `;

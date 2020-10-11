@@ -16,23 +16,25 @@ export default class Carousel extends Component {
 
   render() {
     return (
-      <CarouselWrapper>
-        <div>Carousel Image</div>
-        <div>Carousel Navigator</div>
-      </CarouselWrapper>
+      <CarouselWrapper src={require("assets/images/banner01.jpg")} />
     );
   }
 }
-const CarouselWrapper = styled.div`
+const CarouselWrapper = styled.img`
   /* shape */
   width: 100%;
-  height: 30vh;
-  background-color: lightgrey;
-	margin-bottom:1rem;
-
-  /* position */
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
+  
 `;
+// const CarouselWrapper = styled.div`
+//   /* shape */
+//   width: 100%;
+//   height: 30vh;
+//   background-color: lightgrey;
+// 	margin-bottom:1rem;
+
+//   /* position */
+//   display: flex;
+//   align-items: center;
+//   flex-direction: column;
+//   justify-content: center;
+// `;

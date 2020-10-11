@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import Carousel from "components/common/carousel/Carousel";
 export interface IProductInfoProps {
 }
 
@@ -17,10 +17,8 @@ export default class ProductInfo extends React.Component<IProductInfoProps, IPro
   public render() {
     return (
       <div>
+        <Carousel></Carousel>
         <div>
-            {/* 제품 이미지 */}
-            {/* 제품 리뷰 */}
-            {/* 제품 상세정보  */}
             상품 상세정보 페이지
         </div>
       </div>
