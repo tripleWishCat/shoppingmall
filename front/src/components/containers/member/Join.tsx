@@ -7,7 +7,9 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 // import * as AuthApi from "lib/api/AuthApi";
+
 import validator from "validator";
+
 export interface IJoinProps {}
 
 export interface IJoinState {}
@@ -48,7 +50,21 @@ export default class Join extends React.Component<IJoinProps, IJoinState> {
     //   return true;
     // },
   };
-
+  handleLogin = () => {
+    // 테스트용
+    // api와 연결 필요
+    if (State.username === "abc@email.com" && state.password === "password") {
+      dispatch({
+        type: "loginSuccess",
+        payload: "Login Successfully",
+      });
+    } else {
+      dispatch({
+        type: "loginFailed",
+        payload: "Incorrect username or password",
+      });
+    }
+  };
   public render() {
     return (
       <Container>
