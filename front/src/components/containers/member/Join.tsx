@@ -50,21 +50,7 @@ export default class Join extends React.Component<IJoinProps, IJoinState> {
     //   return true;
     // },
   };
-  handleLogin = () => {
-    // 테스트용
-    // api와 연결 필요
-    if (State.username === "abc@email.com" && state.password === "password") {
-      dispatch({
-        type: "loginSuccess",
-        payload: "Login Successfully",
-      });
-    } else {
-      dispatch({
-        type: "loginFailed",
-        payload: "Incorrect username or password",
-      });
-    }
-  };
+
   public render() {
     return (
       <Container>
