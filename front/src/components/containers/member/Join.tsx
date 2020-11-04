@@ -7,7 +7,9 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 // import * as AuthApi from "lib/api/AuthApi";
+
 import validator from "validator";
+
 export interface IJoinProps {}
 
 export interface IJoinState {}
