@@ -53,7 +53,7 @@ export class MemberController {
     async deleteDeliLocation(@Param("deli_loc_id") deli_loc_id:number, @Res() response:Response) {
         try {
             await this.DeliLocationService.deleteDeliLocation(deli_loc_id)
-            return response.status(200).send(deli_loc_id)
+            return response.status(200).send({"deli_loc_id":deli_loc_id})
         } catch (err) {
             return response.status(400).send(err)
         }
