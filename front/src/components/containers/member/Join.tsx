@@ -42,7 +42,7 @@ export default class Join extends React.Component<IJoinProps, IJoinState> {
       }
       return true;
     },
-    // passwordConfirm: (value: string, value2: string) => {
+    // passwordConfirm: (value: string) => {
     //   if (value2 !== value) {
     //     alert("비밀번호확인이 일치하지 않습니다.");
     //     return false;
@@ -50,6 +50,9 @@ export default class Join extends React.Component<IJoinProps, IJoinState> {
     //   return true;
     // },
   };
+  SignUp(username: string, password: string): void {
+    // axios signup 요청
+  }
 
   public render() {
     return (
@@ -85,7 +88,12 @@ export default class Join extends React.Component<IJoinProps, IJoinState> {
             </div>
           </CardContent>
           <CardActions>
-            <Button variant="contained" size="large" color="secondary">
+            <Button
+              onClick={SignUP}
+              variant="contained"
+              size="large"
+              color="secondary"
+            >
               Join
             </Button>
           </CardActions>

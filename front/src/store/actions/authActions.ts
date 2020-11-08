@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import axios from 'axios'
+import axios from "axios";
 import {
   SignUpData,
   AuthAction,
@@ -15,38 +15,45 @@ import {
 
 import { RootState } from "..";
 import Axios from "axios";
-export const loginUser = (SignUpData:SignUpData) => {
-    // const request = axios
-    //   .post("http://localhost:3000/api/member/", dataToSubmit, {
-    //     withCredentials: true,
-    //   })
-    // .then((res) => res.data);
-    // const request = user.loginUser();
-  
-    // const data = request("post", USER_URL + "/login", dataToSubmit);
-  
-    // return {
-    //   type: LOGIN_USER,
-    //   payload: data,
-    // };
-  }
+export const loginUser = (SignUpData: SignUpData) => {
+  // const request = axios
+  //   .post("http://localhost:3000/api/member/", dataToSubmit, {
+  //     withCredentials: true,
+  //   })
+  // .then((res) => res.data);
+  // const request = user.loginUser();
+  // const data = request("post", USER_URL + "/login", dataToSubmit);
+  // return {
+  //   type: LOGIN_USER,
+  //   payload: data,
+  // };
+};
 
-const BASE_URL:string = "/api/member";
+const BASE_URL: string = "/api/member";
 
-export const signup = (data: SignUpData, onError:() => void): ThunkAction<void,RootState,null, AuthAction> =>{
-    // const name = data.name
-    // const id = data.id
-    // const password = data.password
+export const signup = (
+  data: SignUpData,
+  onError: () => void
+): ThunkAction<void, RootState, null, AuthAction> => {
+  const postBody = {
+    user_name: data.name,
+    user_id: data.id,
+    pwd: data.password,
+  };
 
-    const postBody = {
-        'user_name':data.name,
-        'user_id':data.id,
-        'pwd':data.password
+  return async (dispatch) => {
+    try {
+      const res = await axios.post("rest api server", postBody);
+      // 응답 아직 없음!ㅋ
+    } catch (err) {
+      console.log(err);
+      onError();
+      dispatch({
+        type: SET_ERROR,
+        payload: err.message,
+      });
     }
+  };
+};
 
-    return async dispatch => {
-        try{
-            const res = await axios.post('rest api server', postBody)
-        }
-    }
-}
+// get user by id
