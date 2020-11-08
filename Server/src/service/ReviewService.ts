@@ -27,4 +27,5 @@ export class ReviewService {
       await transaction.rollback()
       throw err
     }
+  }
 }
