@@ -35,19 +35,14 @@ const DeliLocation = sequelize.define('DELI_LOCATION', {
   reg_date: {
     type: DataTypes.DATE
   },
-  reg_id: {
-    type: DataTypes.STRING(20),
-    defaultValue: 'admin1'
-  },
   chg_date: {
     type: DataTypes.DATE
   },
-  chg_id: {
-    type: DataTypes.STRING(20),
-    defaultValue: 'admin1'
-  },
   user_id: {
     type: DataTypes.STRING(20)
+  },
+  base_yn: {
+    type: DataTypes.BOOLEAN
   }
 })
 
