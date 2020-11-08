@@ -34,11 +34,10 @@ export class DeliLocationService {
     }
   }
 
-  // TODO : user_id와 요청보낸 user의 id가 같은지 검증하는 로직 추가
-  async updateDeliLocation(user_id: string, id:number, deliLocation:DeliLocationType) {
+  async updateDeliLocation(deli_loc_id:number, deliLocation:DeliLocationType) {
     const transaction = await sequelize.transaction()
     try {
-      await this.DeliLocationRepo.updateDeliLocation(transaction, user_id, id, deliLocation)
+      await this.DeliLocationRepo.updateDeliLocation(transaction, deli_loc_id, deliLocation)
       await transaction.commit()
     } catch (err) {
       await transaction.rollback()
@@ -46,11 +45,10 @@ export class DeliLocationService {
     }
   }
 
-  // TODO : user_id와 요청보낸 user의 id가 같은지 검증하는 로직 추가
-  async deleteDeliLocation(user_id: string, id:number) {
+  async deleteDeliLocation(deli_loc_id:number) {
     const transaction = await sequelize.transaction()
     try {
-      await this.DeliLocationRepo.deleteDeliLocation(transaction, user_id, id)
+      await this.DeliLocationRepo.deleteDeliLocation(transaction, deli_loc_id)
       await transaction.commit()
     } catch (err) {
       await transaction.rollback()

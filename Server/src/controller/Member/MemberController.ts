@@ -1,11 +1,10 @@
 import { JsonController, Param, Body, Get, Post, Put, Res, Delete, UseBefore, Req } from "routing-controllers";
 import { MemberService } from '../../service'
 import { MemberType, changingSecretBodyType  } from '../../entity'
-import { Request, Response } from "express";
+import { Response } from "express";
 import { createJwt, checkJwt, checkIdentity } from '../../middleware/Auth'
 
 // Member CRUD 로직
-
 @JsonController()
 export class MemberController {
     memberService : MemberService
@@ -16,7 +15,7 @@ export class MemberController {
     async createMember(@Body() member: MemberType, @Res() response:Response) {
         try {
             await this.memberService.createMember(member)
-            return response.status(200).send()
+            return response.status(200).send(member)
         } catch (err) {
             return response.status(400).send(err)
         }
