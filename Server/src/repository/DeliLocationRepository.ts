@@ -13,11 +13,11 @@ export class DeliLocationRepository {
     return DeliLocation.findAll({ where : {user_id: id} , transaction: transaction})
   }
 
-  updateDeliLocation(transaction:Transaction, user_id: string, id: number, deliLocation: DeliLocationType) {
-    return DeliLocation.update({...deliLocation, chg_date: new Date()}, {where: {deli_loc_id: id, user_id: user_id}, transaction:transaction})
+  updateDeliLocation(transaction:Transaction, deli_loc_id:number, deliLocation: DeliLocationType) {
+    return DeliLocation.update({...deliLocation, chg_date: new Date()}, {where: {deli_loc_id: deli_loc_id}, transaction:transaction})
   }
 
-  deleteDeliLocation(transaction:Transaction, user_id: string, id: number) {
-    return DeliLocation.destroy({where: {deli_loc_id: id, user_id: user_id}, transaction:transaction})
+  deleteDeliLocation(transaction:Transaction, deli_loc_id:number) {
+    return DeliLocation.destroy({where: {deli_loc_id: deli_loc_id}, transaction:transaction})
   }
 }

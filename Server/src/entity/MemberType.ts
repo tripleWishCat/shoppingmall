@@ -1,7 +1,8 @@
+// TODO : sigin in , sign up 용 따로 만들기
 interface MemberType {
   user_id: string,
   pwd: string,
-  user_name: string,
+  user_name?: string,
   salt?: string,
   post_num?: string,
   address_b?: string,
@@ -19,7 +20,8 @@ interface MemberType {
   chg_id?: string,
   rec_id?: string,
   grade?: string,
-  point?: string 
+  point?: string,
+  ad?: string
 }
 
 interface changingSecretBodyType {
