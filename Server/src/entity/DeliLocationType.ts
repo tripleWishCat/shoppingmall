@@ -8,7 +8,8 @@ interface DeliLocationType {
   phone: string,
   m_phone: string,
   deli_message: string,
-  user_id: string
+  user_id: string,
+  base_yn: boolean
 }
 
 export default DeliLocationType;
