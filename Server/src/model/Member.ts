@@ -73,6 +73,10 @@ const Member = sequelize.define('Member', {
   point: {
     type: DataTypes.STRING(200),
     defaultValue: '0'
+  },
+  ad: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
   }
 })
 

@@ -3,7 +3,6 @@ interface MemberType {
   user_id: string,
   pwd: string,
   user_name?: string,
-  salt?: string,
   post_num?: string,
   address_b?: string,
   addrress_d?: string,
