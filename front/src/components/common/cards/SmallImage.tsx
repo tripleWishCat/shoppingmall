@@ -1,25 +1,39 @@
+import Axios from "axios";
 import React, { Component } from "react";
 import styled from "styled-components";
+import dotenv from "dotenv";
+dotenv.config();
+interface ImageProps {
+  product_id: number;
+}
 
-// interface ImageProps {
-//   message: string;
-// }
+interface ImageState {
+  imageText: string;
+  imageUrl: string;
+}
 
-// interface ImageState {
-//   ellipsis: boolean;
-// }
-// <ImageProps, ImageState>
+class ImageCard extends Component<ImageProps, ImageState> {
+  constructor(props: ImageProps) {
+    super(props);
+    this.state = {
+      imageText: "default text",
+      imageUrl:
+        "https://item.kakaocdn.net/do/a4f929470c263313e72afbf74ae34d79f43ad912ad8dd55b04db6a64cddaf76d",
+    };
+  }
 
-class ImageCard extends Component {
-  state = {
-    ellipsis: false,
-  };
-
+  componentDidMount() {
+    const getProductData = (async function (product_id: number) {
+      const baseurl: any = (await process.env.BASEURL) + "product/1";
+      const data = await Axios.get(baseurl);
+      console.log(data);
+    })(this.props.product_id);
+  }
   render() {
     return (
       <CardContainer>
-        <Image src="https://item.kakaocdn.net/do/a4f929470c263313e72afbf74ae34d79f43ad912ad8dd55b04db6a64cddaf76d" />
-        <CardText>Lorem ipsum dolor</CardText>
+        <Image src={this.state.imageUrl} />
+        <CardText>{this.state.imageText}</CardText>
       </CardContainer>
     );
   }
