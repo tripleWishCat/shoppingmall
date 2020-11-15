@@ -12,7 +12,7 @@ import ProductInfo from "components/containers/product/ProductInfo";
 import ShopInfo from "components/containers/shopinfo/ShopInfo";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
-const Root: React.FC = () => (
+const Routes: React.FC = () => (
   <BrowserRouter>
     <Wrapper>
       <Container>
@@ -34,7 +34,7 @@ const Root: React.FC = () => (
   </BrowserRouter>
 );
 
-export default Root;
+export default Routes;
 
 const Wrapper = styled.div`
   width: 100%;

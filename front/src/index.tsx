@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import GlobalStyles from "styles/GlobalStyles";
 import theme from "styles/theme";
-import Root from "routes/Root";
+import Routes from "routes/Routes";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -16,7 +16,7 @@ ReactDOM.render(
       <GlobalStyles />
       <ThemeProvider theme={theme}>
         <Header />
-        <Root />
+        <Routes />
         <Footer />
       </ThemeProvider>
     </Provider>

@@ -3,21 +3,20 @@ import styled from "styled-components";
 import SmallImage from "components/common/cards/SmallImage";
 
 export default class FourContainer extends Component {
-
   render() {
     return (
       <GridWrapper>
         <GridTitle>제품 카테고리</GridTitle>
         <Container>
-          <SmallImage></SmallImage>
-          <SmallImage></SmallImage>
-          <SmallImage></SmallImage>
-          <SmallImage></SmallImage>
-          <SmallImage></SmallImage>
-          <SmallImage></SmallImage>
-          <SmallImage></SmallImage>
-          <SmallImage></SmallImage>
-          <SmallImage></SmallImage>
+          <SmallImage product_id={1}></SmallImage>
+          <SmallImage product_id={1}></SmallImage>
+          <SmallImage product_id={1}></SmallImage>
+          <SmallImage product_id={1}></SmallImage>
+          <SmallImage product_id={1}></SmallImage>
+          <SmallImage product_id={1}></SmallImage>
+          <SmallImage product_id={1}></SmallImage>
+          <SmallImage product_id={1}></SmallImage>
+          <SmallImage product_id={1}></SmallImage>
         </Container>
       </GridWrapper>
     );
