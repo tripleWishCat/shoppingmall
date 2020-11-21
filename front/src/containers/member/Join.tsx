@@ -9,13 +9,14 @@ import TextField from "@material-ui/core/TextField";
 // import * as AuthApi from "lib/api/AuthApi";
 import validator from "validator";
 
-type joinState = {
-  username: string;
-  password: string;
+interface joinState {
+  user_name: string;
+  pwd: string;
+  user_id: string;
   isButtonDisabled: boolean;
   helperText: string;
   isError: boolean;
-};
+}
 export default class Join extends React.Component<joinState> {
   // validate: validate = {
   //   userid: (value: string) => {

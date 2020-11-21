@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import Carousel from "components/common/carousel/Carousel";
-import FourContainer from "components/common/layouts/FourContainer";
+import Carousel from "../components/carousel/Carousel";
+import FourContainer from "../components/layouts/FourContainer";
 
 interface mainState {}
 export default class Main extends React.Component<mainState> {

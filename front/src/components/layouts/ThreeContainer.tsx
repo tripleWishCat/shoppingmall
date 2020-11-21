@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import BigImage from "components/common/cards/BigImage";
+import BigImage from "../cards/BigImage";
 import PropTypes from "prop-types";
 
 export default class ThreeContainer extends Component {

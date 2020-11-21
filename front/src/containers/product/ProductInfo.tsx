@@ -1,5 +1,5 @@
 import * as React from "react";
-import Carousel from "components/common/carousel/Carousel";
+import Carousel from "components/carousel/Carousel";
 export interface IProductInfoProps {}
 
 export interface IProductInfoState {}
