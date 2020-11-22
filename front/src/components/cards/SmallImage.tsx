@@ -23,7 +23,7 @@ class ImageCard extends Component<ImageProps, ImageState> {
 
   componentDidMount() {
     const getProductData = (async function (product_id: number) {
-      const baseurl: any = process.env.BASE_URL + "/api/product/1";
+      const baseurl: any = process.env.REACT_APP_REST + "/api/product/1";
       const data = await Axios.get(baseurl);
       console.log(data);
     })(this.props.product_id);

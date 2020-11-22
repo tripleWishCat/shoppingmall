@@ -37,8 +37,6 @@ export const login = function (user: IMember) {
   }
 };
 
-// export const logout = function (user: IMember) {};
-
 export const getMemberInfo = function (user: IMember) {
   try {
     return axios.get(baseurl + "api/member/" + user.user_id);
@@ -47,3 +45,5 @@ export const getMemberInfo = function (user: IMember) {
     return err;
   }
 };
+
+// export const logout = function (user: IMember) {};
