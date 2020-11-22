@@ -1,8 +1,7 @@
 import Axios from "axios";
 import React, { Component } from "react";
 import styled from "styled-components";
-import dotenv from "dotenv";
-dotenv.config();
+
 interface ImageProps {
   product_id: number;
 }
@@ -24,7 +23,7 @@ class ImageCard extends Component<ImageProps, ImageState> {
 
   componentDidMount() {
     const getProductData = (async function (product_id: number) {
-      const baseurl: any = (await process.env.BASEURL) + "product/1";
+      const baseurl: any = process.env.REACT_APP_REST + "/api/product/1";
       const data = await Axios.get(baseurl);
       console.log(data);
     })(this.props.product_id);

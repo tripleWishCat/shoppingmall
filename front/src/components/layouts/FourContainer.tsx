@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import SmallImage from "components/common/cards/SmallImage";
+import SmallImage from "../cards/SmallImage";
 
 export default class FourContainer extends Component {
   render() {
