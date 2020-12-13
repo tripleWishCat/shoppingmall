@@ -7,7 +7,7 @@ interface Props {
   color?: any;
   placeholder?: string;
   required?: boolean;
-  onChange?: () => void;
+  // onChange?: () => void;
   value?: string;
 }
 
