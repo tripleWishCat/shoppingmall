@@ -10,7 +10,8 @@ const app = createExpressServer({
     },
     routePrefix: "/api",
     controllers: [ __dirname + "/controller/**/*.js" ],
-    classTransformer: true
+    classTransformer: true,
+    cors: true
 })
 
 app.use(express.json())

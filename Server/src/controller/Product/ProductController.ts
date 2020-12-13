@@ -1,7 +1,7 @@
-import { JsonController, Param, Body, Get, Post, Put, Res, Delete, Params } from "routing-controllers";
+import { JsonController, Param, Body, Get, Post, Put, Res, Delete, Params, QueryParams } from "routing-controllers";
 import { ProductService } from '../../service';
 import { MemberType } from '../../entity';
-import { Response } from "express";
+import { query, Response } from "express";
 
 
 // Member CRUD 로직
@@ -12,10 +12,26 @@ export class ProductController {
         this.productService = new ProductService();
     }
 
-    @Get("/products")
-    async selectProducts(@Res() response:Response) {
+    @Get("/product")
+    async selectProducts(@Res() response:Response, @QueryParams() queryParams:any) {
         try {
-            console.log('@GET /products')
+            console.log('@GET /product')
+            if (queryParams.id) {
+                let result = await this.productService.selectProduct(queryParams.id);
+                return response.status(200).send(result);
+            }
+            if (queryParams.search) {
+                if (queryParams.page) {
+                    let result = await this.productService.selectProductsSearch(queryParams.search, queryParams.page);
+                    return response.status(200).send(result);
+                }
+                let result = await this.productService.selectProductsSearch(queryParams.search, 1);
+                return response.status(200).send(result);
+            }
+            if (queryParams.page) {
+                let result = await this.productService.selectProductsByPage(queryParams.page);
+                return response.status(200).send(result);
+            }
             let result = await this.productService.selectProducts();
             return response.status(200).send(result);
         } catch (err) {
@@ -24,27 +40,27 @@ export class ProductController {
         }
     }
 
-    @Get("/products/:page")
-    async selectProductsByPape(@Res() response:Response, @Param('page') page:number) {
-        try {
-            let result = await this.productService.selectProductsByPage(page);
-            return response.status(200).send(result);
-        } catch (err) {
-            return response.status(400).send(err);
-        }
-    }
+    // @Get("/product")
+    // async selectProductsByPape(@Res() response:Response, @QueryParam('page') page:number) {
+    //     try {
+    //         let result = await this.productService.selectProductsByPage(page);
+    //         return response.status(200).send(result);
+    //     } catch (err) {
+    //         return response.status(400).send(err);
+    //     }
+    // }
 
-    @Get("/product/:id")
-    async selectProduct(@Res() response:Response, @Param('id') id:number) {
-        try {
-            let result = await this.productService.selectProduct(id);
-            return response.status(200).send(result);
-        } catch (err) {
-            return response.status(400).send(err)
-        }
-    }
+    // @Get("/product/:id")
+    // async selectProduct(@Res() response:Response, @Param('id') id:number) {
+    //     try {
+    //         let result = await this.productService.selectProduct(id);
+    //         return response.status(200).send(result);
+    //     } catch (err) {
+    //         return response.status(400).send(err)
+    //     }
+    // }
 
-    @Get("/products/:search/:page")
+    @Get("/product/:search/:page")
     async selectProductsSearch(@Res() response:Response, @Params() params:any) {
         try {
             let result = await this.productService.selectProductsSearch(params.search, params.page);
@@ -59,7 +75,7 @@ export class ProductController {
             let result = await this.productService.insertProduct(product);
             return response.status(200).send(result);
         } catch (err) {
-            return response.status(400).send(err)
+            return response.status(400).send({err})
         }
     }
 
@@ -69,7 +85,7 @@ export class ProductController {
             let result = await this.productService.updateProduct(product, id);
             return response.status(200).send(result);
         } catch (err) {
-            return response.status(400).send(err)
+            return response.status(400).send({err})
         }
     }
 
@@ -79,7 +95,7 @@ export class ProductController {
             let result = await this.productService.deleteProduct(id);
             return response.status(200).send(result);
         } catch (err) {
-            return response.status(400).send(err)
+            return response.status(400).send({err})
         }
     }
 }

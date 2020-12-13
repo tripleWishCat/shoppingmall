@@ -1,6 +1,5 @@
 import sequelize from "../model/db";
 import { ProductRepository } from '../repository'
-import { MemberType } from '../entity'
 import { Transaction } from "sequelize/types";
 import { response } from "express";
 
@@ -65,11 +64,11 @@ export class ProductService {
       await this.productRepository.insertProductD(transaction, product.PRODUCT_D);
 
       transaction.commit();
-      return `PROD_ID : ${prodId}, 게시물이 정상적으로 등록되었습니다.`;
+      return {PROD_ID: prodId};
     } 
     catch (err) {
       transaction.rollback();
-      return err;
+      throw err;
     }
   }
 
