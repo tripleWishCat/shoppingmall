@@ -4,27 +4,12 @@ import { List } from "immutable";
 
 const restApi = process.env.REACT_APP_REST_API!;
 
-// export const checkEmailExists = (email: string) => {
-//   try {
-//     return axios.get(restApi + "/rest/CheckEmail/" + email);
-//   } catch (error) {
-//     console.log(error);
-//     return false;
-//   }
-// };
-// export const checkUsernameExists = (userid: string) => {
-//   try {
-//     return axios.get(restApi + "/rest/CheckId/" + userid);
-//   } catch (error) {
-//     return true;
-//   }
-// };
-
 interface Iregister {
   email: string;
   password: string;
   userid: string;
 }
+
 export const localRegister: ({
   email,
   password,
