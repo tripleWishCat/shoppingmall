@@ -2,6 +2,7 @@ import logger from 'morgan'
 import "reflect-metadata"
 import { createExpressServer } from "routing-controllers"
 import express from 'express'
+import cors from 'cors'
 
 const app = createExpressServer({
     defaults: {
@@ -10,13 +11,14 @@ const app = createExpressServer({
     },
     routePrefix: "/api",
     controllers: [ __dirname + "/controller/**/*.js" ],
-    classTransformer: true
+    classTransformer: true,
+    cors: true
 })
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(logger('dev'))
-
+app.use(cors())
 
 app.listen(3000, () => {
     console.log('app listening on port 3000!')
