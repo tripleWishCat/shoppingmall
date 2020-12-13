@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexWrap: "wrap",
       width: 400,
       margin: `${theme.spacing(0)} auto`,
-    },      
+    },
     loginBtn: {
       marginTop: theme.spacing(2),
       flexGrow: 1,
@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-
 //state type
 
 type State = {
@@ -112,7 +111,7 @@ const Login = () => {
   }, [state.username, state.password]);
 
   const handleLogin = () => {
-    // 테스트용 
+    // 테스트용
     // api와 연결 필요
     if (state.username === "abc@email.com" && state.password === "password") {
       dispatch({

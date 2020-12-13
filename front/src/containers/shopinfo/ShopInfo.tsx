@@ -1,6 +1,8 @@
 import * as React from "react";
 
-export interface IShopInfoProps {}
+export interface IShopInfoProps {
+  user_id: number;
+}
 
 export interface IShopInfoState {}
 

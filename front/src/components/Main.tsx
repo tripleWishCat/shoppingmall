@@ -8,7 +8,6 @@ const Main: React.FC = () => (
     <FourContainer />
   </MainWrapper>
 );
-
 export default Main;
 const MainWrapper = styled.div`
   width: 100%;
