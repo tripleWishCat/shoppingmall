@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import DefaultButton from "components/common/buttons/DefaultButton";
-import LinkButton from "components/common/buttons/LinkButton";
+import BasicButton from "components/buttons/BasicButton";
 
 export default class Header extends Component {
   render() {
@@ -10,33 +9,33 @@ export default class Header extends Component {
         <HeaderUtil>
           <HeaderUtilInner>
             <UtilLeft>
-              <LinkButton name="바로가기+" linkto="/" />
-              <LinkButton name="공지사항" linkto="/board/notice" />
-              <LinkButton name="상품 Q&A" linkto="/board/question" />
+              <BasicButton message="바로가기+" href="/" />
+              <BasicButton message="공지사항" href="/board/notice" />
+              <BasicButton message="상품 Q&A" href="/board/question" />
             </UtilLeft>
             <UtilRight>
-              <LinkButton name="로그인" linkto="/member/login" />
-              <LinkButton name="회원가입" linkto="/member/join" />
-              <LinkButton name="주문조회" linkto="/myshop" />
+              <BasicButton message="로그인" href="/member/login" />
+              <BasicButton message="회원가입" href="/member/join" />
+              <BasicButton message="주문조회" href="/myshop" />
             </UtilRight>
           </HeaderUtilInner>
         </HeaderUtil>
         <HeaderMenu>
           <HeaderLeft>
             <Hamburger>|||</Hamburger>
-            <LinkButton name="제품전체" linkto="/product" />
-            <LinkButton name="퓨전 떡" linkto="/product" />
-            <LinkButton name="전통 떡" linkto="/product" />
-            <LinkButton name="청년제과" linkto="/product" />
-            <LinkButton name="선물세트" linkto="/product" />
+            <BasicButton message="제품전체" href="/product" />
+            <BasicButton message="퓨전 떡" href="/product" />
+            <BasicButton message="전통 떡" href="/product" />
+            <BasicButton message="청년제과" href="/product" />
+            <BasicButton message="선물세트" href="/product" />
           </HeaderLeft>
           {/* <a href="/"> */}
-            <Logo src={require("assets/images/logo_header.gif")} />
+          <Logo src={require("assets/images/logo_header.gif")} />
           {/* </a> */}
           <HeaderRight>
             {/* <DefaultButton message="검색" /> */}
-            <LinkButton name="검색" linkto="/product" />
-            <LinkButton name="장바구니" linkto="/order/basket" />
+            <BasicButton message="검색" href="/product" />
+            <BasicButton message="장바구니" href="/order/basket" />
           </HeaderRight>
         </HeaderMenu>
       </HeaderWrapper>
@@ -115,7 +114,7 @@ const HeaderRight = styled.div`
 `;
 
 const Logo = styled.img`
-  display:grid;
+  display: grid;
   place-items: center;
   width: 15%;
 `;

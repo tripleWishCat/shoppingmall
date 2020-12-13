@@ -1,11 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "es6",
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["es6", "dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "esModuleInterop": true,
     "target": "es6",
@@ -28,7 +23,5 @@
     "jsx": "react",
     "strict": true
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }
