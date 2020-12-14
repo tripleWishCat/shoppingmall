@@ -2,12 +2,11 @@ import React from "react";
 import { Input } from "@material-ui/core";
 
 interface Props {
-  // autoComplete:string;
-  // autoFocus:boolean;
   color?: any;
+  name?: string;
   placeholder?: string;
   required?: boolean;
-  // onChange?: () => void;
+  onChange?: (e: any) => void;
   value?: string;
 }
 
@@ -15,10 +14,11 @@ const InputForm: React.FC<Props> = ({ ...props }) => {
   return (
     <>
       <Input
-        color={props.color ? props.color : "default"}
+        fullWidth={false}
         required={props.required ? props.required : false}
         placeholder={props.placeholder ? props.placeholder : ""}
-        value={props.value ? props.value : ""}
+        onChange={props.onChange}
+        value={props.value}
       ></Input>
     </>
   );
