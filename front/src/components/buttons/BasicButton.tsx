@@ -5,7 +5,7 @@ interface Props {
   message: string;
   disabled?: boolean;
   color?: any;
-  action?: () => void;
+  onClick?: (e: any) => void;
   href?: string;
 }
 
@@ -17,6 +17,7 @@ const BasicButton: React.FC<Props> = ({ ...props }) => {
         color={props.color ? props.color : "default"}
         disabled={props.disabled ? props.disabled : false}
         href={props.href ? props.href : ""}
+        onClick={props.onClick}
       >
         {props.message}
       </Button>
