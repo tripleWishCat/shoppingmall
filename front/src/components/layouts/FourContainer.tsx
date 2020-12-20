@@ -1,27 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
+import { AxiosResponse } from "axios";
 import styled from "styled-components";
 import SmallImage from "../cards/SmallImage";
+import { getOneData } from "api/ProductApi";
 
-export default class FourContainer extends Component {
-  render() {
-    return (
-      <GridWrapper>
-        <GridTitle>제품 카테고리</GridTitle>
-        <Container>
-          <SmallImage product_id={1}></SmallImage>
-          <SmallImage product_id={1}></SmallImage>
-          <SmallImage product_id={1}></SmallImage>
-          <SmallImage product_id={1}></SmallImage>
-          <SmallImage product_id={1}></SmallImage>
-          <SmallImage product_id={1}></SmallImage>
-          <SmallImage product_id={1}></SmallImage>
-          <SmallImage product_id={1}></SmallImage>
-          <SmallImage product_id={1}></SmallImage>
-        </Container>
-      </GridWrapper>
-    );
-  }
+interface Iproduct {}
+
+async function FourContainer({ ...props }: Iproduct) {
+  const data = await getOneData(1);
+
+  return (
+    <GridWrapper>
+      <GridTitle>제품 카테고리</GridTitle>
+      <Container>
+        <SmallImage imageUrl={data} />
+      </Container>
+    </GridWrapper>
+  );
 }
+export default FourContainer;
+
 const GridWrapper = styled.div``;
 const GridTitle = styled.div`
   padding: 20px 0 10px;
