@@ -22,7 +22,7 @@ export class ImportController {
         }
     }
 
-    @Get("/import/Payment")
+    @Get("/import/payment")
     async getPayments(@Res() response:Response, @QueryParams() params:any) {
         try {
             console.log('@GET /import/getToken')
