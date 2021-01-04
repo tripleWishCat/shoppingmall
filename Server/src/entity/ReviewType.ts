@@ -1,5 +1,5 @@
 interface ReviewType {
-  re_id:string,
+  re_id:number,
   prod_id:number,
   img?: string,
   content?: string,

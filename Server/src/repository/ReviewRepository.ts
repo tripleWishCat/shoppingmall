@@ -3,19 +3,23 @@ import { Transaction } from "sequelize/types";
 import { ReviewType } from '../entity'
 
 export class ReviewRepository {
-  createReview(transaction:Transaction, review:ReviewType) {
+  async selectReview(user_id: string) {
+    return Review.findAll({ where : {user_id: user_id}})
+  }
+  
+  async selectReviewByPost(prod_id: number) {
+    return Review.findAll({ where : {prod_id: prod_id}})
+  }
+
+  async insertReview(transaction:Transaction, review:ReviewType) {
     return Review.create({...review}, {transaction:transaction})
   }
 
-  readUserReviews(transaction:Transaction, id: string) {
-    return Review.findAll({ where : {user_id: id} , transaction: transaction})
-  }
-
-  updateReview(transaction:Transaction, re_id:number, review: ReviewType) {
+  async updateReview(transaction:Transaction, re_id:number, review: ReviewType) {
     return Review.update({...review }, {where: {re_id: re_id}, transaction:transaction})
   }
 
-  deleteReview(transaction:Transaction, re_id:number) {
+  async deleteReview(transaction:Transaction, re_id:number) {
     return Review.destroy({where: {re_id: re_id}, transaction:transaction})
   }
 }
