@@ -10,10 +10,13 @@ import Basket from "containers/order/Basket";
 import Orders from "containers/order/Orders";
 import ProductInfo from "containers/product/ProductInfo";
 import ShopInfo from "containers/shopinfo/ShopInfo";
+import Header from "components/navbar/Header";
+import Footer from "components/navbar/Footer";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 const Routes: React.FC = () => (
   <BrowserRouter>
+    <Header />
     <Wrapper>
       <Container>
         <Switch>
@@ -31,6 +34,7 @@ const Routes: React.FC = () => (
         </Switch>
       </Container>
     </Wrapper>
+    <Footer />
   </BrowserRouter>
 );
 

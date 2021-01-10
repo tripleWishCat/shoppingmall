@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import BasicButton from "components/buttons/BasicButton";
 
@@ -9,33 +10,56 @@ export default class Header extends Component {
         <HeaderUtil>
           <HeaderUtilInner>
             <UtilLeft>
-              <BasicButton message="바로가기+" href="/" />
-              <BasicButton message="공지사항" href="/board/notice" />
-              <BasicButton message="상품 Q&A" href="/board/question" />
+              <Link to="/">
+                <BasicButton message="바로가기+" />
+              </Link>
+              <Link to="/board/notice">
+                <BasicButton message="공지사항" />
+              </Link>
+              <Link to="/board/question">
+                <BasicButton message="상품 Q&A" />
+              </Link>
+              <Link to="/member/login">
+                <BasicButton message="로그인" />
+              </Link>
             </UtilLeft>
             <UtilRight>
-              <BasicButton message="로그인" href="/member/login" />
-              <BasicButton message="회원가입" href="/member/join" />
-              <BasicButton message="주문조회" href="/myshop" />
+              <Link to="/member/join">
+                <BasicButton message="회원가입" />
+              </Link>
+              <Link to="/myshop">
+                <BasicButton message="주문조회" />
+              </Link>
             </UtilRight>
           </HeaderUtilInner>
         </HeaderUtil>
         <HeaderMenu>
           <HeaderLeft>
             <Hamburger>|||</Hamburger>
-            <BasicButton message="제품전체" href="/product" />
-            <BasicButton message="퓨전 떡" href="/product" />
-            <BasicButton message="전통 떡" href="/product" />
-            <BasicButton message="청년제과" href="/product" />
-            <BasicButton message="선물세트" href="/product" />
+            <Link to="/product">
+              <BasicButton message="제품전체" />
+            </Link>
+            <Link to="/product">
+              <BasicButton message="퓨전 떡" />
+            </Link>
+            <Link to="/product">
+              <BasicButton message="전통 떡" />
+            </Link>
+            <Link to="/product">
+              <BasicButton message="청년제과" />
+            </Link>
+            <Link to="/product">
+              <BasicButton message="선물세트" />
+            </Link>
           </HeaderLeft>
-          {/* <a href="/"> */}
           <Logo src={require("assets/images/logo_header.gif")} />
-          {/* </a> */}
           <HeaderRight>
-            {/* <DefaultButton message="검색" /> */}
-            <BasicButton message="검색" href="/product" />
-            <BasicButton message="장바구니" href="/order/basket" />
+            <Link to="/product">
+              <BasicButton message="검색" />
+            </Link>
+            <Link to="/order/basket">
+              <BasicButton message="장바구니" />
+            </Link>
           </HeaderRight>
         </HeaderMenu>
       </HeaderWrapper>
