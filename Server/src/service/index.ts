@@ -1,8 +1,17 @@
-import { MemberService } from './MemberService'
+import { MemberService } from './MemberService';
 import { ProductService } from './ProductService';
-import { DeliLocationService } from './DeliLocationService'
-import { OrderService } from './OrderService'
-import { ReviewService } from './ReviewService'
-import { ImportService } from './ImportService'
+import { DeliLocationService } from './DeliLocationService';
+import { OrderService } from './OrderService';
+import { ReviewService } from './ReviewService';
+import { ImportService } from './ImportService';
+import { ShoppingBagService } from './ShoppingBagService';
 
-export { MemberService, ProductService, DeliLocationService, ReviewService, OrderService, ImportService }
+export { 
+    MemberService, 
+    ProductService, 
+    DeliLocationService, 
+    ReviewService, 
+    OrderService, 
+    ImportService,
+    ShoppingBagService,
+}

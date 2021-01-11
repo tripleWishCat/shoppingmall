@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Response, Request } from "express";
 import { ReviewService } from '../../service'
 import { ReviewType  } from '../../entity'
 import { checkJwt, checkIdentity } from '../../middleware/Auth'
@@ -6,7 +6,7 @@ import { JsonController, Param, Body, Get, Post, Put, Res, Delete, UseBefore, Re
 
 
 @JsonController()
-export class MemberController {
+export class ReviewController {
     reviewService : ReviewService
     constructor() { this.reviewService = new ReviewService() }
 
@@ -43,9 +43,10 @@ export class MemberController {
   @Put("/review")
   async updateReview(@Body() review: ReviewType, @Res() response:Response, @Req() request:Request) {
     try {
-      const result = await this.reviewService.updateReview(review.re_id, review)
+      const result = await this.reviewService.updateReview(review.re_id, review);
+      return response.status(200).send(result);
     } catch(err) {
-
+      return response.status(400).send(err);
     }
   }
 

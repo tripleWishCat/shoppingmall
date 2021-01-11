@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize'
 import sequelize from './db'
 
-const Review = sequelize.define('Review', {
+const Review = sequelize.define('REVIEW', {
   re_id : {
     type: DataTypes.INTEGER({scale:10}),
     autoIncrement: true,
@@ -35,16 +35,24 @@ const Review = sequelize.define('Review', {
   user_id: {
     type: DataTypes.STRING(20)
   },
-  reg_date: {
-    type: DataTypes.DATE
+  REG_ID: {
+    type: DataTypes.STRING(20),
+    defaultValue: 'admin1'
   },
-  chg_date: {
+  CHG_DATE: {
     type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW
-  }
+    defaultValue: new Date()
+  },
+  CHG_ID: {
+    type: DataTypes.STRING(20),
+    defaultValue: 'admin1'
+  },
+}, {
+    createdAt: 'REG_DATE',
+    updatedAt: 'CHG_DATE'
 })
 
-const Comment = sequelize.define('Comment', {
+const Comment = sequelize.define('COMMENT', {
   co_id : {
     type: DataTypes.INTEGER({scale:10}),
     autoIncrement: true,
@@ -72,7 +80,7 @@ const Comment = sequelize.define('Comment', {
   }
 })
 
-const ReviewLike = sequelize.define('ReviewLike', {
+const ReviewLike = sequelize.define('REVIEWLIKE', {
   user_id: {
     type: DataTypes.STRING(20),
     primaryKey: true
