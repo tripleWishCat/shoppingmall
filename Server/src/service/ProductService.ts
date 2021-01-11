@@ -1,13 +1,15 @@
 import sequelize from "../model/db";
-import { ProductRepository } from '../repository'
+import { ProductRepository, ImageRepository } from '../repository'
 import { Transaction } from "sequelize/types";
 import { response } from "express";
 
 
 export class ProductService {
     productRepository: ProductRepository;
+    imageRepository: ImageRepository;
   constructor () {
     this.productRepository = new ProductRepository();
+    this.imageRepository = new ImageRepository();
     console.log('Product Service constructed')
   }
   
@@ -36,7 +38,9 @@ export class ProductService {
   async selectProduct(id:number) {
     try {
       console.log('PRODUCT SERVICE:: selectProduct');
-      const result = await this.productRepository.selectProduct(id);
+      const result:any = await this.productRepository.selectProduct(id);
+      const image = await this.imageRepository.selectProdImg(id);
+      result[0].IMGAE = image
       return result;
     } 
     catch (err) {
@@ -62,7 +66,10 @@ export class ProductService {
       const prodId = productM_result.getDataValue('PROD_ID');
       product.PRODUCT_D.PROD_ID = prodId;
       await this.productRepository.insertProductD(transaction, product.PRODUCT_D);
-
+      for (let i=0; i < product.IMAGE.length; i++) {
+        const tempImgId = await this.imageRepository.insertImage(transaction, product.IMAGE[i]);
+        await this.imageRepository.insertProdImg(transaction, prodId, tempImgId.getDataValue('IMG_ID'));
+      }
       transaction.commit();
       return {PROD_ID: prodId};
     } 
