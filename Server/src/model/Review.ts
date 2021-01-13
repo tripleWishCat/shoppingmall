@@ -35,6 +35,10 @@ const Review = sequelize.define('REVIEW', {
   user_id: {
     type: DataTypes.STRING(20)
   },
+  REG_DATE: {
+    type: DataTypes.DATE,
+    defaultValue: new Date()
+  },
   REG_ID: {
     type: DataTypes.STRING(20),
     defaultValue: 'admin1'
@@ -71,13 +75,25 @@ const Comment = sequelize.define('COMMENT', {
   user_id: {
     type: DataTypes.STRING(20)
   },
-  reg_date: {
-    type: DataTypes.DATE
-  },
-  chg_date: {
+  REG_DATE: {
     type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW
-  }
+    defaultValue: new Date()
+  },
+  REG_ID: {
+    type: DataTypes.STRING(20),
+    defaultValue: 'admin1'
+  },
+  CHG_DATE: {
+    type: DataTypes.DATE,
+    defaultValue: new Date()
+  },
+  CHG_ID: {
+    type: DataTypes.STRING(20),
+    defaultValue: 'admin1'
+  },
+}, {
+    createdAt: 'REG_DATE',
+    updatedAt: 'CHG_DATE'
 })
 
 const ReviewLike = sequelize.define('REVIEWLIKE', {
@@ -93,13 +109,25 @@ const ReviewLike = sequelize.define('REVIEWLIKE', {
     type: DataTypes.BOOLEAN,
     defaultValue: false
   },
-  reg_date: {
-    type: DataTypes.DATE
-  },
-  chg_date: {
+  REG_DATE: {
     type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW
-  }
+    defaultValue: new Date()
+  },
+  REG_ID: {
+    type: DataTypes.STRING(20),
+    defaultValue: 'admin1'
+  },
+  CHG_DATE: {
+    type: DataTypes.DATE,
+    defaultValue: new Date()
+  },
+  CHG_ID: {
+    type: DataTypes.STRING(20),
+    defaultValue: 'admin1'
+  },
+}, {
+    createdAt: 'REG_DATE',
+    updatedAt: 'CHG_DATE'
 })
 
 sequelize.sync({ alter: true })
