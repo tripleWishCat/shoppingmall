@@ -28,7 +28,7 @@ const Routes: React.FC = () => (
           <Route path="/myshop" exact component={Myshop} />
           <Route path="/order/basket" exact component={Basket} />
           <Route path="/order/orders" exact component={Orders} />
-          <Route path="/product" exact component={ProductInfo} />
+          <Route path="/product/:productId" exact component={ProductInfo} />
           <Route path="/shopinfo" exact component={ShopInfo} />
           <Redirect path="*" to="/" />
         </Switch>
