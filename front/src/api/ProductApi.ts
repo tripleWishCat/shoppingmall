@@ -13,7 +13,7 @@ const getOneData = async function (product_id: number) {
     //   // `data` is of type ServerData, correctly inferred
     // })
     const result = await axios.get(getUrl);
-    return result;
+    return result.data;
   } catch {
     console.log("err");
   }

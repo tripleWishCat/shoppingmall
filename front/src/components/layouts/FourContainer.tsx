@@ -2,49 +2,24 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SmallImage from "../cards/SmallImage";
-import { getOneData } from "api/ProductApi";
-import { getSearchData } from "api/ProductApi";
-import { AxiosResponse } from "axios";
 
-interface Iproduct {}
-const fetchData = async () => {
-  const response = await getSearchData();
-  return response;
-};
+import product from "types/product";
+interface Iproduct {
+  data: Array<product>;
+}
 
 function FourContainer({ ...props }: Iproduct) {
-  const [data, setData] = useState<AxiosResponse>();
-  useEffect(() => {
-    // const fetchedData = async () => {
-    //   const response = await fetchData();
-    //   return response;
-    // };
-    fetchData().then((res) => setData(res));
-
-    // if (!data) {
-    //   const getData = getOneData(1).then((res) => {
-    //     fetchData(res[0]);
-    //     getImgUrl(res[0].TUMB_IMG);
-    //   });
-    // }
-    // console.log(data);
-    // if (searchData === []) {
-    //   const fetchData = async () => {
-    //     const fetchedData = await getSearchData();
-    //     console.log(fetchedData);
-    //     fetchSearchData(fetchedData);
-    //   };
-    // }
-    // console.log(searchData);
-  }, []);
-  console.log(data);
+  console.log("got data!");
+  console.log(props.data);
   return (
     <GridWrapper>
       <GridTitle>제품 카테고리</GridTitle>
       <Container>
-        <Link to={`/product/${1}`}>
-          <SmallImage imageUrl={data.data[0]} />
-        </Link>
+        {props.data.map((item) => (
+          <Link key={item.PROD_ID} to={`/product/${item.PROD_ID}`}>
+            <SmallImage data={[item]} />
+          </Link>
+        ))}
       </Container>
     </GridWrapper>
   );

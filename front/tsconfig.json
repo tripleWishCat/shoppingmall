@@ -14,7 +14,7 @@
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
