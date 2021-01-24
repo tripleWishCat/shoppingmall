@@ -1,32 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SmallImage from "../cards/SmallImage";
-import { getOneData } from "api/ProductApi";
 
-interface Iproduct {}
+import product from "types/product";
+interface Iproduct {
+  data: Array<product>;
+}
+
 function FourContainer({ ...props }: Iproduct) {
-  const [data, fetchData] = useState<string>("");
-  if (data.length == 0) {
-    const getData = getOneData(1).then((res) => {
-      fetchData(res.TUMB_IMG);
-    });
-  }
-
-  // const [data, fetchData] = useState([]);
-  // if (data.length == 0) {
-  //   const getData = getOneData(1).then((res) => {
-  //     fetchData(res);
-  //     return;
-  //   });
-  // }
+  console.log("got data!");
+  console.log(props.data);
   return (
     <GridWrapper>
       <GridTitle>제품 카테고리</GridTitle>
       <Container>
-        <Link to={`/product/${1}`}>
-          <SmallImage imageUrl={data} />
-        </Link>
+        {props.data.map((item) => (
+          <Link key={item.PROD_ID} to={`/product/${item.PROD_ID}`}>
+            <SmallImage data={[item]} />
+          </Link>
+        ))}
       </Container>
     </GridWrapper>
   );
