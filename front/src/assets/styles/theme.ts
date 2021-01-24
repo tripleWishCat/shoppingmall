@@ -5,17 +5,22 @@ import baseStyled, {
 } from "styled-components";
 
 const sizes: { [key: string]: number } = {
-  desktop: 768,
   mobile: 320,
+  tablet: 768,
+  desktop: 1024,
 };
 
 type BackQuoteArgs = string[];
 
 interface Media {
+  mobile: (...args: BackQuoteArgs) => CSSProp | undefined;
+  tablet: (...args: BackQuoteArgs) => CSSProp | undefined;
   desktop: (...args: BackQuoteArgs) => CSSProp | undefined;
 }
 
 const media: Media = {
+  mobile: (...args: BackQuoteArgs) => undefined,
+  tablet: (...args: BackQuoteArgs) => undefined,
   desktop: (...args: BackQuoteArgs) => undefined,
 };
 
@@ -29,9 +34,22 @@ Object.keys(sizes).reduce((acc: Media, label: string) => {
           }
         `;
       break;
-    // mobile 추가
-    // case "mobile":
-
+    case "tablet":
+      acc.tablet = (...args: BackQuoteArgs) =>
+        css`
+          @media only screen and (max-width: ${sizes.desktop}px) and (min-width: ${sizes.tablet}px) {
+            ${args}
+          }
+        `;
+      break;
+    case "mobile":
+      acc.mobile = (...args: BackQuoteArgs) =>
+        css`
+          @media only screen and (max-width: ${sizes.tablet}px) {
+            ${args}
+          }
+        `;
+      break;
     default:
       break;
   }
@@ -39,12 +57,13 @@ Object.keys(sizes).reduce((acc: Media, label: string) => {
 }, media);
 
 const colors = {
-  white: "#ffffff",
+  white: "#341234",
   black: "#000000",
 };
 
 const secondaryColors = {};
 const fontSizes: string[] = [];
+
 const theme = {
   colors,
   fontSizes,
