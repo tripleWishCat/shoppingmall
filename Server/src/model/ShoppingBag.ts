@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize'
 import sequelize from './db'
 
-const ShoppingBag = sequelize.define('SHOPPING_BAG', {
+const SHOPPINGBAG = sequelize.define('SHOPPING_BAG', {
     user_id: {
         type: DataTypes.STRING(20),
         allowNull: false,
@@ -58,4 +58,4 @@ const ShoppingBag = sequelize.define('SHOPPING_BAG', {
 
 sequelize.sync({ alter: true })
 
-export { ShoppingBag }
+export { SHOPPINGBAG }
