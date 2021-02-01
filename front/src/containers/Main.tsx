@@ -6,15 +6,15 @@ import { getSearchData } from "api/ProductApi";
 import product from "types/product";
 
 export default function Main() {
+  const [data, setData] = useState<[product]>();
   useEffect(() => {
     const getProductData = async function () {
-      const response = await getSearchData().then((res) => {
+      await getSearchData().then((res) => {
         setData(res.data);
       });
     };
     getProductData();
   }, []);
-  const [data, setData] = useState<[product]>();
   return (
     <>
       <MainWrapper>
