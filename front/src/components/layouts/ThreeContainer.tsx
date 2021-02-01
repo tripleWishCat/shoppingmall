@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import BigImage from "../cards/BigImage";
-import PropTypes from "prop-types";
+// import BigImage from "../cards/BigImage";
+// import PropTypes from "prop-types";
 
 export default class ThreeContainer extends Component {
   static propTypes = {};
@@ -10,15 +10,7 @@ export default class ThreeContainer extends Component {
     return (
       <GridWrapper>
         <GridTitle>제품 카테고리</GridTitle>
-        <Container>
-          <BigImage></BigImage>
-          <BigImage></BigImage>
-          <BigImage></BigImage>
-          <BigImage></BigImage>
-          <BigImage></BigImage>
-          <BigImage></BigImage>
-          <BigImage></BigImage>
-        </Container>
+        <Container></Container>
       </GridWrapper>
     );
   }

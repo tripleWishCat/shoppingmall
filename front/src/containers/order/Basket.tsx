@@ -1,23 +1,35 @@
-import * as React from "react";
-export interface IBasketProps {}
+import React, { useEffect, useState } from "react";
+interface Props {
+  text: string;
+  number: number;
+}
 
-export interface IBasketState {}
+export default function Basket({ ...props }: Props) {
+  const [state, setState] = useState<number>(0);
+  const [num, setNum] = useState<number>(0);
+  useEffect(() => {
+    const countDouble = function () {
+      setState(state + 2);
+    };
+    countDouble();
+  }, []);
 
-export default class Basket extends React.Component<
-  IBasketProps,
-  IBasketState
-> {
-  constructor(props: IBasketProps) {
-    super(props);
-
-    this.state = {};
-  }
-
-  public render() {
-    return (
+  const count = function () {
+    setState(state + 1);
+  };
+  const countNum = function () {
+    setNum(num + 3);
+  };
+  return (
+    <>
+      {state}
+      {num}
       <div>
-        <div>장바구니</div>
+        <button onClick={count}>클릭</button>
       </div>
-    );
-  }
+      <div>
+        <button onClick={countNum}>클릭</button>
+      </div>
+    </>
+  );
 }
