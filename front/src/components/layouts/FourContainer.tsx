@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SmallImage from "../cards/SmallImage";
@@ -9,8 +9,6 @@ interface Iproduct {
 }
 
 function FourContainer({ ...props }: Iproduct) {
-  console.log("got data!");
-  console.log(props.data);
   return (
     <GridWrapper>
       <GridTitle>제품 카테고리</GridTitle>

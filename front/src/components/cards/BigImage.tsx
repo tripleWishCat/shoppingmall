@@ -1,31 +1,33 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
+import product from "types/product";
 
-// interface ImageProps {
-//   message: string;
-// }
-
-// interface ImageState {
-//   ellipsis: boolean;
-// }
-// <ImageProps, ImageState>
-
-class ImageCard extends Component {
-  state = {
-    ellipsis: false,
-  };
-
-  render() {
-    return (
-      <CardContainer>
-        <Image src="https://item.kakaocdn.net/do/a4f929470c263313e72afbf74ae34d79f43ad912ad8dd55b04db6a64cddaf76d" />
-        <CardText>Lorem ipsum dolor</CardText>
-      </CardContainer>
-    );
-  }
+interface ImageProps {
+  data: Array<product>;
+  onClick?: (name: string) => void;
+  href?: string;
+}
+function BigImage({ ...props }: ImageProps) {
+  // console.log(props.data);
+  return (
+    <CardContainer>
+      {
+        <Image
+          src={
+            props.data[0].TUMB_IMG
+              ? props.data[0].TUMB_IMG
+              : "http://youngmill.kr/web/product/big/202011/e7ca0e460a1c8c8129878775aa638f05.jpg"
+          }
+          alt="ugh"
+        />
+      }
+      {props.data[0].TITLE}
+      <CardText>Lorem ipsum dolor</CardText>
+    </CardContainer>
+  );
 }
 
-export default ImageCard;
+export default BigImage;
 
 const CardContainer = styled.div`
   width: 33.33%;
