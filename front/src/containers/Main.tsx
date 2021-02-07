@@ -15,6 +15,7 @@ export default function Main() {
     };
     getProductData();
   }, []);
+
   return (
     <>
       <MainWrapper>

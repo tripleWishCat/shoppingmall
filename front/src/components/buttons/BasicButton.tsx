@@ -1,26 +1,20 @@
 import React from "react";
-import { Button } from "@material-ui/core";
-
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 interface Props {
   message: string;
   disabled?: boolean;
   color?: any;
   onClick?: (e: any) => void;
-  href?: string;
+  href: string;
 }
 
 const BasicButton: React.FC<Props> = ({ ...props }) => {
   return (
     <>
-      <Button
-        disableRipple={true}
-        color={props.color ? props.color : "default"}
-        disabled={props.disabled ? props.disabled : false}
-        href={props.href ? props.href : ""}
-        onClick={props.onClick}
-      >
+      <Link to={props.href} className="button" onClick={props.onClick}>
         {props.message}
-      </Button>
+      </Link>
     </>
   );
 };
