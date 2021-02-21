@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import SmallImage from "../cards/SmallImage";
+import ProductImage from "../cards/ProductImage";
 
 import product from "types/product";
 interface Iproduct {
@@ -15,7 +15,12 @@ function FourContainer({ ...props }: Iproduct) {
       <Container>
         {props.data.map((item) => (
           <Link key={item.PROD_ID} to={`/product/${item.PROD_ID}`}>
-            <SmallImage data={[item]} />
+            <ProductImage data={[item]} />
+            <p>
+              <h3>{props.data[0].TITLE}</h3>
+            </p>
+            <p>{props.data[0].SUB_TITLE}</p>
+            <p>{props.data[0].PRICE}원</p>
           </Link>
         ))}
       </Container>
@@ -31,6 +36,8 @@ const GridTitle = styled.div`
 `;
 const Container = styled.div`
   margin-top: 15px;
-  display: table;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
   width: calc(100% + 20px);
 `;

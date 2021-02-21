@@ -100,6 +100,21 @@ img{
         opacity:0.6;
     }
 }
+.InfoBar{
+  a{
+        display: inline-block;
+        position: relative;
+        width: 10%;
+        text-align: center;
+        background-size: 1px 13px;
+        background: url('/images/l_bar.gif') no-repeat 0% 50%;
+        font-weight: 300;
+    }
+    a:visited{
+      color:black
+
+    }
+}
 .category{
     .button{
         display: inline-block;
@@ -137,10 +152,21 @@ font-weight: 500;
 }
 .button:hover{
 font-weight: 700;
-}
+} 
 .button:visited{
     color:black
 }
-`;
 
+.detail-text-wrapper{
+  flex-direction: row;
+  display: flex;
+  margin:0.5em 0;
+  .title{
+    width:20%
+  }
+  .value{
+    width:80%
+  }
+}
+`;
 export default GlobalStyle;
