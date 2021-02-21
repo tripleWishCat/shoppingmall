@@ -58,7 +58,7 @@ const Join: React.FC = () => {
           setState({ ...state, password2: e.target.value });
         }}
       />
-      <BasicButton message="Join" onClick={sendJoin} color="primary" />
+      <BasicButton message="Join" onClick={sendJoin} href="" />
     </JoinContainer>
   );
 };

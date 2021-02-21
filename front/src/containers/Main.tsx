@@ -4,6 +4,7 @@ import Carousel from "../components/carousel/Carousel";
 import FourContainer from "../components/layouts/FourContainer";
 import { getSearchData } from "api/ProductApi";
 import product from "types/product";
+import ThreeContainer from "components/layouts/ThreeContainer";
 
 export default function Main() {
   const [data, setData] = useState<[product]>();
@@ -15,6 +16,7 @@ export default function Main() {
     };
     getProductData();
   }, []);
+
   return (
     <>
       <MainWrapper>

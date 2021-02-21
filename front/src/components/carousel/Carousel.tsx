@@ -10,20 +10,16 @@ interface CarouselState {
 }
 // <CarouselState, CarouselProps>
 
-
 export default class Carousel extends Component {
   static propTypes = {};
 
   render() {
-    return (
-      <CarouselWrapper src={require("assets/images/banner01.jpg")} />
-    );
+    return <CarouselWrapper src={require("assets/images/banner01.jpg")} />;
   }
 }
 const CarouselWrapper = styled.img`
   /* shape */
   width: 100%;
-  
 `;
 // const CarouselWrapper = styled.div`
 //   /* shape */

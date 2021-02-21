@@ -49,7 +49,7 @@ const Login: React.FC = () => {
           setState({ ...state, password: e.target.value });
         }}
       />
-      <BasicButton message="Login" onClick={sendJoin} color="primary" />
+      <BasicButton message="Login" onClick={sendJoin} href="" />
     </JoinContainer>
   );
 };
