@@ -25,4 +25,7 @@ const InfoBar = styled.div`
   padding: 70px 0 15px;
   margin: 0 0 10px;
   text-decoration: none;
+  a {
+    font-size: 14px;
+  }
 `;

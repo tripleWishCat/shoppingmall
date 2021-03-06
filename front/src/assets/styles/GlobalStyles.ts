@@ -107,7 +107,7 @@ img{
         width: 10%;
         text-align: center;
         background-size: 1px 13px;
-        background: url('/images/l_bar.gif') no-repeat 0% 50%;
+        background: url('/images/l_bar.gif') no-repeat 100% 50%;
         font-weight: 300;
     }
     a:visited{
